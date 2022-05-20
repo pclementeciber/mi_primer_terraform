@@ -3,5 +3,5 @@
 ###
 variable "http_vm_name" {
   type    = string
-  ##default = "http-vm"
+  default = "Frontal-TF"
 }
