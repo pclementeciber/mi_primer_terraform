@@ -1,5 +1,5 @@
 tenant              = ""
-subscription        = "8"
+subscription        = ""
 client              = ""
 client_password     = ""
 
