@@ -36,3 +36,6 @@ variable "resource_name"{
 variable "ssh_key"{
   type =string
 }
+variable "tfstate"{
+  type =string
+}
