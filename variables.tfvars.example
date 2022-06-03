@@ -1,0 +1,21 @@
+tenant              = ""
+subscription        = "8"
+client              = ""
+client_password     = ""
+
+resource_name = "ciber-terraform"
+resource_location ="North Europe"
+
+network_name = "network-terraform"
+network_address = "10.0.0.0/16"
+
+subnet_name = "subnet-terraform"
+subnet_address = "10.0.2.0/24"
+
+ssh_key =""
+
+array_de_vm = { 
+    "example1" = 1 
+    "example2" = 1
+    }
+

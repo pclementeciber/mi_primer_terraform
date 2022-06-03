@@ -22,7 +22,8 @@ resource "azurerm_network_interface" "http" {
 }
 
 resource "azurerm_virtual_machine" "http" {
-  name                  = var.http_vm_name
+  for_each = var.array_de_vm
+  name                  = "${each.key}"
   location              = azurerm_resource_group.Ciber-Terraform.location
   resource_group_name   = azurerm_resource_group.Ciber-Terraform.name
   network_interface_ids = [azurerm_network_interface.http.id]
@@ -55,14 +56,17 @@ resource "azurerm_virtual_machine" "http" {
   os_profile_linux_config {
     disable_password_authentication = false
     ssh_keys {
-        key_data = "${file("files/ssh-id.pub")}"
+        # key_data = "${file("files/ssh-id.pub")}"
+        key_data = "${var.ssh_key}"
         path = "/home/ubuntu/.ssh/authorized_keys"
     }
   }
 }
 
+
 resource "azurerm_dev_test_global_vm_shutdown_schedule" "rg" {
-  virtual_machine_id = azurerm_virtual_machine.http.id
+  for_each = var.array_de_vm
+  virtual_machine_id = azurerm_virtual_machine.http["${each.key}"].id
   location           = azurerm_resource_group.Ciber-Terraform.location
   enabled            = true
 
